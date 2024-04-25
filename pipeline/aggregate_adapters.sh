@@ -15,4 +15,4 @@ fi
 docker run -v $cell_file_prefix/jkoubele/FLI_total_RNA/detected_adapters:/detected_adapters \
 -v $cell_file_prefix/jkoubele/FLI_total_RNA/fli-total-rna-seq-analysis:/fli-total-rna-seq-analysis \
 --security-opt seccomp=unconfined \
-scientific_python /bin/sh -c "python fli-total-rna-seq-analysis/extract_best_adapters.py --detected_adapters_folder /detected_adapters; chmod 777 -R /detected_adapters"
+scientific_python /bin/sh -c "python fli-total-rna-seq-analysis/scripts/extract_best_adapters.py --detected_adapters_folder /detected_adapters; chmod 777 -R /detected_adapters"

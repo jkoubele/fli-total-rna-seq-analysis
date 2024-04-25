@@ -16,10 +16,6 @@ file_name_stem="${file_name_read_1%%.*}"
 trimmed_stem="${file_name_stem::-3}"
 file_name_read_2="${trimmed_stem}_R2.atria.fastq.gz"
 
-echo $file_name_read_1
-echo $file_name_read_2
-echo $trimmed_stem
-
 mkdir --parents $cell_file_prefix/jkoubele/FLI_total_RNA/BAM/"${trimmed_stem}"
 
 $cell_file_prefix/jkoubele/STAR_2.7.11a/Linux_x86_64_static/STAR \

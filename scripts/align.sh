@@ -2,7 +2,10 @@
 
 #SBATCH --account=jkoubele
 #SBATCH --job-name=align
-#SBATCH --error=/data/public/jkoubele/cluster_logs/align.log
+#SBATCH --output=/data/public/jkoubele/cluster_logs/%j_%x.log
+#SBATCH --error=/data/public/jkoubele/cluster_errors/%j_%x.err
+#SBATCH --partition=all
+#SBATCH --ntasks=16
 
 file_name_read_1=${1:-"no003-1_OA3_R1.atria.fastq.gz"}
 run_on_cluster=${2:-false}
@@ -27,4 +30,9 @@ $cell_file_prefix/jkoubele/STAR_2.7.11a/Linux_x86_64_static/STAR \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMattributes GX GN \
 --genomeLoad LoadAndKeep \
---limitBAMsortRAM 30000000000
+--limitBAMsortRAM 50000000000 \
+--outWigType bedGraph \
+--outWigNorm RPM \
+--outSJfilterOverhangMin 15 15 15 15 \
+--alignSJoverhangMin 15 \
+--alignSJDBoverhangMin 15

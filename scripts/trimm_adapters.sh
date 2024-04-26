@@ -2,12 +2,15 @@
 
 #SBATCH --account=jkoubele
 #SBATCH --job-name=trimm_adaptors
-#SBATCH --error=/data/public/jkoubele/cluster_logs/trimm_adaptors.log
+#SBATCH --output=/data/public/jkoubele/cluster_logs/%j_%x.log
+#SBATCH --error=/data/public/jkoubele/cluster_errors/%j_%x.err
+#SBATCH --partition=all
+#SBATCH --ntasks=6
 
 file_name_read_1=${1:-"no003-1_OA3_R1.fastq.gz"}
 run_on_cluster=${2:-false}
 
-echo $file_name_read_1
+echo "$file_name_read_1"
 
 cell_file_prefix="/cellfile/datapublic"
 if $run_on_cluster; then

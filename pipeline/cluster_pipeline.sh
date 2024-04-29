@@ -24,3 +24,6 @@ sh ./batch_samtools_indexing.sh
 
 # Deduplicate UMIs
 sh ./batch_deduplicate_umi.sh
+
+# Indexing of deduplicated BAM files
+sh ./batch_samtools_indexing_after_dedup.sh

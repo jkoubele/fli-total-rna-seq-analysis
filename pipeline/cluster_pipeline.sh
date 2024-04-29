@@ -27,3 +27,6 @@ sh ./batch_deduplicate_umi.sh
 
 # Indexing of deduplicated BAM files
 sh ./batch_samtools_indexing_after_dedup.sh
+
+# Feature counting (uses featureCounts; optionally, the scripts batch_count_features_htseq.sh can be used to count via htseq-count)
+sh ./batch_count_features.sh

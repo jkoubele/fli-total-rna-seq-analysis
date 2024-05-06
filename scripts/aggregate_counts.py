@@ -73,7 +73,7 @@ def prepare_annontation_file() -> None:
     annotation_df = pd.DataFrame(data={'sample_name': df_feature_counts.columns,
                                        'group': [sample_name_to_intervention_group(sample) for sample in
                                                  df_feature_counts.columns]})
-
+    annotation_df = annotation_df.set_index('sample_name')
     annotation_df.to_csv(aggregate_counts_folder / 'annotation.tsv', sep='\t')
 
 

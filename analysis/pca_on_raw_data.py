@@ -61,6 +61,10 @@ X_transformed = np.log1p(X_transformed)
 
 X_transformed -= np.mean(X_transformed, axis=0)
 
+std = np.std(X_transformed, axis=0)
+
+# X_transformed /= std
+
 pca = PCA().fit(X_transformed)
 print(f"Explained variance \n PC1: {pca.explained_variance_ratio_[0]} \n PC2: {pca.explained_variance_ratio_[1]}")
 
@@ -74,5 +78,6 @@ for group in set(intervention_groups):
 # plt.legend(handles=scatter.legend_elements(), labels=intervention_groups)
 plt.xlabel(f"PC 1 ({round(pca.explained_variance_ratio_[0] * 100, 1)}%)")
 plt.ylabel(f"PC 2 ({round(pca.explained_variance_ratio_[1] * 100, 1)}%)")
+plt.title('Log transform only')
 plt.legend()
 plt.show()

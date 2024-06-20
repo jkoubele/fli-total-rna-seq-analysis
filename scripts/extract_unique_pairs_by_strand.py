@@ -68,7 +68,8 @@ def extract_and_save_unique_pairs(bamfile_input_path: Path,
     for i, read in enumerate(bamfile_input):
         if i % 100_000 == 0:
             print(f"Computing covered intervals: {i}", flush=True)
-
+        if read.query_name in invalid_ids:
+            continue
         if read.is_read1 and read.query_name not in reads_2:
             reads_1[read.query_name] = read
             continue
@@ -148,8 +149,11 @@ def extract_and_save_unique_pairs(bamfile_input_path: Path,
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--bam_file_input',
-                        default='/cellfile/datapublic/jkoubele/FLI_total_RNA/BAM_dedup_exact_position/no003-1_OA3/deduplicated.bam',
+                        default='/cellfile/datapublic/jkoubele/compare_coverage/K002000093_54873Aligned.sortedByCoord.out.bam',
                         help='Folder containing .bam file to be processed.')
+    # parser.add_argument('--bam_file_input',
+    #                     default='/cellfile/datapublic/jkoubele/FLI_total_RNA/BAM_dedup_exact_position/no003-1_OA3/deduplicated.bam',
+    #                     help='Folder containing .bam file to be processed.')
     # parser.add_argument('--bam_file_input',
     #                     default='/cellfile/datapublic/jkoubele/FLI_total_RNA/cov_example/chr1.bam',
     #                     help='Folder containing .bam file to be processed.')

@@ -18,9 +18,9 @@ for(sample_name in list.files(parent_folder)){
   bed_graph_reverse <- import.bedGraph(paste0(folder_path, 'coverage_unique_reverse.bedGraph'))
   json_data <- fromJSON(file=paste0(folder_path, 'unique_read_count.json'))
   
-  # json_data$valid_reads_forward * 1e6
-  strand_coverages <- list('+' = coverage(bed_graph_forward, weight = bed_graph_forward$score), 
-                           '-' = coverage(bed_graph_reverse, weight = bed_graph_reverse$score ))
+  library_size <- json_data$valid_reads_forward + json_data$valid_reads_reverse
+  strand_coverages <- list('+' = coverage(bed_graph_forward, weight = bed_graph_forward$score / library_size * 1e6), 
+                           '-' = coverage(bed_graph_reverse, weight = bed_graph_reverse$score / library_size * 1e6))
   
   
   slope <- c()

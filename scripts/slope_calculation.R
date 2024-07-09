@@ -52,11 +52,12 @@ for(sample_name in list.files(parent_folder)){
       avg_coverage <- c(avg_coverage, mean(intron_coverage))
       next
     }
-    intron_coverage_normalized <- intron_coverage / mean(intron_coverage)
+
+    #intron_coverage_normalized <- intron_coverage / mean(intron_coverage)
     
     x <-if (intron_strand=='+') 1:length(intron_coverage) else length(intron_coverage):1
     
-    model <- lm(intron_coverage_normalized~x)
+    model <- lm(intron_coverage~x)
     model_summary <- summary(model)
     
     slope <- c(slope, model_summary$coefficients["x",'Estimate'])
